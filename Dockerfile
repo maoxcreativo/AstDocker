@@ -22,4 +22,4 @@ RUN make
 RUN make install
 RUN make samples
 WORKDIR /root
-CMD ["/usr/sbin/asterisk", "-vvvvvvv"]
+CMD ["/usr/sbin/asterisk", "-cvvvvvvv"]
