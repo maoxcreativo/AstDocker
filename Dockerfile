@@ -14,9 +14,10 @@ RUN ldconfig -p | grep pj
 WORKDIR /usr/src
 RUN wget http://downloads.asterisk.org/pub/telephony/certified-asterisk/asterisk-certified-13.8-current.tar.gz
 RUN tar -zxvf asterisk-certified-13.8-current.tar.gz
-WORKDIR /usr/src/certified-asterisk-13.8-cert2
+WORKDIR /usr/src/asterisk-certified-13.8-cert2
 RUN sh contrib/scripts/get_mp3_source.sh
-COPY menuselect.makeopts /usr/src/certified-asterisk-13.8-cert2/menuselect.makeopts
+RUN sh contrib/scripts/install_prereq installed
+COPY menuselect.makeopts /usr/src/asterisk-certified-13.8-cert2/menuselect.makeopts
 RUN ./configure CFLAGS='-g -O2 -mtune=native' --libdir=/usr/lib64
 RUN make
 RUN make install
