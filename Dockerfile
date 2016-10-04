@@ -16,7 +16,7 @@ RUN wget http://downloads.asterisk.org/pub/telephony/certified-asterisk/asterisk
 RUN tar -zxvf asterisk-certified-13.8-current.tar.gz
 WORKDIR /usr/src/asterisk-certified-13.8-cert2
 RUN sh contrib/scripts/get_mp3_source.sh
-RUN sh contrib/scripts/install_prereq installed
+RUN sh contrib/scripts/install_prereq install
 COPY menuselect.makeopts /usr/src/asterisk-certified-13.8-cert2/menuselect.makeopts
 RUN ./configure CFLAGS='-g -O2 -mtune=native' --libdir=/usr/lib64
 RUN make
