@@ -15,8 +15,8 @@ WORKDIR /usr/src
 RUN wget http://downloads.asterisk.org/pub/telephony/certified-asterisk/asterisk-certified-13.8-current.tar.gz
 RUN tar -zxvf asterisk-certified-13.8-current.tar.gz
 WORKDIR /usr/src/asterisk-certified-13.8-cert2
-RUN sh contrib/scripts/get_mp3_source.sh
-RUN sh contrib/scripts/install_prereq install
+RUN sh /usr/src/asterisk-certified-13.8-cert2/contrib/scripts/get_mp3_source.sh
+RUN sh /usr/src/asterisk-certified-13.8-cert2/contrib/scripts/install_prereq install
 RUN ./configure CFLAGS='-g -O2 -mtune=native' --libdir=/usr/lib64
 RUN make
 RUN make install
