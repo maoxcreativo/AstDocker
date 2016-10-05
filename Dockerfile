@@ -21,5 +21,49 @@ RUN ./configure CFLAGS='-g -O2 -mtune=native' --libdir=/usr/lib64
 RUN make
 RUN make install
 RUN make samples
+RUN printf "[simpletrans] \n\
+type=transport \n\
+protocol=udp \n\
+bind=0.0.0.0 \n\
+ 
+[6001] \n\
+type = endpoint \n\
+transport = simpletrans \n\
+context = internal \n\
+disallow = all \n\
+allow = ulaw \n\
+aors = 6001 \n\
+auth = auth6001 \n\
+ 
+[6001] \n\
+type = aor \n\
+max_contacts = 1 \n\
+ 
+[auth6001] \n\
+type=auth \n\
+auth_type=userpass \n\
+password=1234 \n\
+username=6001 \n\
+ 
+[6002] \n\
+type = endpoint \n\
+transport = simpletrans \n\
+context = internal \n\
+disallow = all \n\
+allow = ulaw \n\
+aors = 6002 \n\
+auth = auth6002 \n\
+ 
+[6002] \n\
+type = aor \n\
+max_contacts = 1 \n\
+ 
+[auth6002] \n\
+type=auth \n\
+auth_type=userpass \n\
+password=1234 \n\
+username=6001 \n" \ 
+> /etc/asterisk/pjsip.conf
+
 WORKDIR /root
 CMD ["/usr/sbin/asterisk", "-cvvvvvvv"]
