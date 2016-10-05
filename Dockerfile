@@ -65,15 +65,13 @@ password=1234 \n\
 username=6001 \n" \ 
 > /etc/asterisk/pjsip.conf
 
-RUN printf "[general]
-;
-; RTP start and RTP end configure start and end addresses
-;
-; Defaults are rtpstart=5000 and rtpend=31000
-;
-rtpstart=10000
-rtpend=10008
-" \ 
+RUN printf "[general] \n\
+; RTP start and RTP end configure start and end addresses \n\
+; \n\
+; Defaults are rtpstart=5000 and rtpend=31000 \n\
+; \n\
+rtpstart=10000 \n\
+rtpend=10008 \n" \
 > /etc/asterisk/rtp.conf
 
 
