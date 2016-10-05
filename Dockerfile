@@ -29,7 +29,7 @@ bind=0.0.0.0 \n\
 [6001] \n\
 type = endpoint \n\
 transport = simpletrans \n\
-context = internal \n\
+context = default \n\
 disallow = all \n\
 allow = ulaw \n\
 aors = 6001 \n\
@@ -48,7 +48,7 @@ username=6001 \n\
 [6002] \n\
 type = endpoint \n\
 transport = simpletrans \n\
-context = internal \n\
+context = default \n\
 disallow = all \n\
 allow = ulaw \n\
 aors = 6002 \n\
@@ -64,6 +64,19 @@ auth_type=userpass \n\
 password=1234 \n\
 username=6001 \n" \ 
 > /etc/asterisk/pjsip.conf
+
+RUN printf "[general]
+;
+; RTP start and RTP end configure start and end addresses
+;
+; Defaults are rtpstart=5000 and rtpend=31000
+;
+rtpstart=10000
+rtpend=10008
+" \ 
+> /etc/asterisk/rtp.conf
+
+
 
 WORKDIR /root
 CMD ["/usr/sbin/asterisk", "-cvvvvvvv"]
